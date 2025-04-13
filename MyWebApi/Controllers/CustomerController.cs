@@ -5,6 +5,7 @@
     using System.Linq;
     using System.Threading.Tasks;
     using MyWebApi.Models;
+    using Microsoft.EntityFrameworkCore;
 
     [ApiController]
     [Route("api/[controller]")]
@@ -64,6 +65,31 @@
             if (customer == null) return NotFound();
             return Ok(customer);
         }
+
+        // Method to return all customers
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Customer>>> GetAllCustomers()
+        {
+            return await _context.Customers.ToListAsync();
+        }
+
+        // Method to get customers by name (first or last)
+        [HttpGet("by-name/{name}")]
+        public async Task<ActionResult<IEnumerable<Customer>>> GetCustomersByName(string name)
+        {
+            var customers = await _context.Customers
+                .Where(c => c.FirstName.Contains(name) || c.LastName.Contains(name))
+                .ToListAsync();
+
+            if (customers == null || !customers.Any())
+            {
+                return NotFound(new { Message = $"No customers found with name containing: {name}" });
+            }
+
+            return customers;
+        }
+
+
     }
 
 }
