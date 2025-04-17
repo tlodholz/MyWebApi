@@ -49,9 +49,8 @@ namespace MyWebApi.Controllers
 
         // Update a Project
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateProject(int id, [FromBody] Project project)
+        public async Task<IActionResult> UpdateProject([FromBody] Project project)
         {
-            if (id != project.Id) return BadRequest();
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
             _context.Entry(project).State = EntityState.Modified;
@@ -62,7 +61,7 @@ namespace MyWebApi.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.Projects.Any(e => e.Id == id)) return NotFound();
+                if (!_context.Projects.Any(e => e.Id == project.Id)) return NotFound();
                 throw;
             }
 
