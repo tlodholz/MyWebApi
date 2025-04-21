@@ -1,12 +1,13 @@
-﻿namespace MyWebApi.Controllers
-{
-    using Microsoft.AspNetCore.Mvc;
-    using System;
-    using System.Linq;
-    using System.Threading.Tasks;
-    using MyWebApi.Models;
-    using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+using MyWebApi.Models;
+using Microsoft.EntityFrameworkCore;
 
+
+namespace MyWebApi.Controllers
+{
     [ApiController]
     [Route("api/[controller]")]
     public class CustomersController : ControllerBase
