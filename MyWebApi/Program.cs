@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 var builder = WebApplication.CreateBuilder(args);
 
-string DbConnectionString = "Server=tcp:web-database-sql.database.windows.net,1433;Initial Catalog=blazor-app-sql;Persist Security Info=True;User ID=database_admin_1;Password=appkey=2025;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Connection Timeout=30;";
-
+string DbConnectionString =
+    "Server=tcp:blazor-server-1.database.windows.net,1433;Initial Catalog=blazor-sql-1;Persist Security Info=False;User ID=database_admin_1;Password=appkey=2025;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
 // Add services to the container.
 
 builder.Services.AddControllers();
